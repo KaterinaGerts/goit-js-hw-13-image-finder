@@ -2,26 +2,49 @@ import debounce from "lodash.debounce";
 import "./styles.css";
 import { refs } from "./refs.js";
 import API from "./apiService";
-import { loadBtn } from "./loadButton";
+import { resetPage } from "./apiService";
+import {modalImage} from "./modal";
+import { scrollIntoView } from "./loadButton";
 import cardForm from "../template/cardsForm.hbs";
 
-refs.inputEl.addEventListener("input", debounce(onInputValue,1000));
-refs.loadBtnEl.addEventListener('click', onBtnClick);
+refs.inputEl.addEventListener("input", debounce(onInputValue, 1000));
+refs.loadBtnEl.addEventListener("click", onBtnClick);
+refs.galleryItemEl.addEventListener('click', onGalleryClick);
+
+let imageName = "";
+
+//функция для открытия модального окна
+function onGalleryClick(e) {
+const currentImage = e.target;
+modalImage.show();
+const image = document.querySelector('.large-image');
+image.src = currentImage.dataset.attribute;
+image.alt = currentImage.alt;
+}
 
 //функция кнопки load more
-function onBtnClick(e) {
-  if(e.target.length === 0) {
-    refs.loadBtnEl.classList.add('.is-hidden');
-  } refs.loadBtnEl.classList.remove('.is-hidden');
+function onBtnClick() {
+  fetchImages(imageName);  
 }
 
 // получаю значение из инпута
 function onInputValue(e) {
-  console.log(e.target.value);
-  const imageName = e.target.value; 
+  e.preventDefault();
+
+  imageName = e.target.value;
   if (!imageName) {
+    clearImageCard();
+    refs.loadBtnEl.classList.add("is-hidden");
+    refs.buttonUp.classList.add("is-hidden");
     return;
   }
+  clearImageCard();
+  resetPage();
+  fetchImages(imageName);
+}
+
+// объявление функции, которая делает запрос в API
+function fetchImages(imageName) {
   API(imageName)
     .then((data) => renderImageResult(data))
     .catch((error) => console.log(error));
@@ -41,9 +64,9 @@ function createMarkUp(elem, template) {
 
 // функция, которая отвечает за отрисовку рендер результата
 function renderImageResult(images) {
-  const cardMarkUp = cardForm(...images);
-  clearImageCard(refs.galleryItemEl); 
-  createMarkUp(refs.galleryItemEl,cardMarkUp);
-
-   loadBtn();
+  const cardMarkUp = cardForm(images);
+  createMarkUp(refs.galleryItemEl, cardMarkUp);
+  scrollIntoView();
+  refs.loadBtnEl.classList.remove("is-hidden");
+  refs.buttonUp.classList.remove("is-hidden");
 }

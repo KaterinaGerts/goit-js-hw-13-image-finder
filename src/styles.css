@@ -1,0 +1,67 @@
+body {
+  position: relative;
+  background-color: rgb(189, 184, 184);
+}
+
+.search-form {
+ padding-left: auto;
+ padding-right: auto;
+}
+
+.input {   
+  margin-bottom: 20px;
+  width: 200px;
+  height: 30px;
+  border: 3px solid palevioletred;
+  border-radius: 4px;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.image {
+  margin-right: 10px;
+  width: 300px;
+  height: 200px;
+  border: 2px solid gray;
+}
+
+.stats {
+  display: flex;
+  margin-right: 3px;
+}
+
+.stats-item {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+.material-icons {
+  color: palevioletred;
+}
+
+button.is-hidden {
+  display: none;
+}
+
+.button-up {
+text-decoration: none;
+
+position: fixed;
+bottom: 15px;
+right: 15px;
+
+padding: 10px 15px;
+border: 1px solid dimgray;
+color: grey;
+background-color: salmon;
+}
+
+.button-up.is-hidden {
+  display: none;
+}
