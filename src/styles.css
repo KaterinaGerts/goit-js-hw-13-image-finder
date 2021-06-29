@@ -23,6 +23,7 @@ body {
 }
 
 .image {
+  margin: 0;
   margin-right: 10px;
   width: 300px;
   height: 200px;
@@ -31,14 +32,19 @@ body {
 
 .stats {
   display: flex;
-  margin-right: 3px;
+  justify-content: space-around;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  width: 300px;
+  border: 1px dashed grey;
 }
 
 .stats-item {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  margin-right: 30px;
+  margin: 0;
+  
 }
 
 .material-icons {
@@ -53,12 +59,13 @@ button.is-hidden {
 text-decoration: none;
 
 position: fixed;
-bottom: 15px;
-right: 15px;
+bottom: 10px;
+right: 10px;
 
-padding: 10px 15px;
+padding: 5px 5px;
 border: 1px solid dimgray;
-color: grey;
+border-radius: 2px;
+color: rgb(56, 54, 54);
 background-color: salmon;
 }
 
