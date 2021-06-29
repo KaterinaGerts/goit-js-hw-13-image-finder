@@ -51,7 +51,16 @@ body {
   color: palevioletred;
 }
 
-button.is-hidden {
+.button {
+  width: 80px;
+  height: 32px;
+  border: 1px solid dimgray;
+  border-radius: 2px; 
+  color: rgb(56, 54, 54);
+background-color: salmon;
+}  
+
+.button.is-hidden {
   display: none;
 }
 
