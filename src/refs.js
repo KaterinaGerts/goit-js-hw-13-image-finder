@@ -5,3 +5,5 @@ export const refs = {
   galleryItemEl: document.querySelector('.gallery'),
   buttonUp: document.querySelector('.button-up'),
 }
+
+
